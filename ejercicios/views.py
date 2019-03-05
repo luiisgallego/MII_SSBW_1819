@@ -13,17 +13,16 @@ def hola_mundo_nombre(request, usuario):
 
 ############### TAREA 2 ################
 
-def ejercicio1(request):
+def ejercicio1(request, lista):
+	lista2 = lista.split()
+	aux = 0
+	for valor in lista:
+		if len(valor) > 1:
+			aux += 1
 
-    #salida = '''<html>Hola mundo ejercicio1</html>'''
-    lista = ['hola', 'adios', 'yes']
-    aux = 0
+	return HttpResponse(lista2[0])
 
-    for valor in lista:
-        if len(valor) > 1:
-            aux += 1
-    
-    return HttpResponse(aux)
+
 
 ############### TAREA 3 ################
 

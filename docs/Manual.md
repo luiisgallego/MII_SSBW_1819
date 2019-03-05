@@ -34,3 +34,5 @@ Hemos creado una carpeta dentro de *ejercicios* denominada *templates* que usare
 ### TAREA 3
 
 Usamos *REQUEST* para coger la URL de ... (preguntar).... y de esa url tomamos el código fuente de la página. Luego sobre ese código fuente completo hay que pasar expresiones regulares para localizar cosas como imágenes y su título. Posteriormente nos quedamos con ese par titulo - imagen y tendremos que mostrarlo en el template.
+
+El request hay que especificarlo en el requirements, por tanto, el contenedor hay que construirlo de nuevo (docker-compose build .....)
