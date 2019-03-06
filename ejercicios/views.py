@@ -14,14 +14,50 @@ def hola_mundo_nombre(request, usuario):
 ############### TAREA 2 ################
 
 def ejercicio1(request, lista):
-	lista2 = lista.split()
-	aux = 0
+	lista = lista.split()
+	contador = 0
+
 	for valor in lista:
-		if len(valor) > 1:
-			aux += 1
+		if len(valor) > 1 and valor[0] == valor[len(valor) - 1]:
+			contador += 1
 
-	return HttpResponse(lista2[0])
+	salida = '''<html>Solución: %s</html>''' % (contador)
+	return HttpResponse(salida)
 
+def ejercicio2(request, lista):
+	lista = lista.split()
+	anterior = lista[0]
+
+	for i,valor in enumerate(lista[1:]):
+		if anterior == valor:
+			lista.pop(i)
+
+		anterior = valor
+	
+	salida = '''<html>Solución: %s</html>''' % (lista)
+	return HttpResponse(salida)
+
+def ejercicio3(request, entrada):
+	solucion = ""	
+
+	if len(entrada) > 2:
+		solucion += entrada[0:2] + entrada[len(entrada)-2:len(entrada)]	
+	
+	salida = '''<html>Solución: %s</html>''' % (solucion)
+	return HttpResponse(salida)
+
+def ejercicio4(request, entrada):
+	solucion = ""
+	final = entrada[len(entrada)-3:len(entrada)]	
+	
+	if len(entrada) > 2 and final != "ing":
+		solucion = entrada + "ing"
+	elif len(entrada) > 2 and final == "ing":
+		solucion = entrada + "ly"
+	else: solucion = entrada
+	
+	salida = '''<html>Solución: %s</html>''' % (solucion)
+	return HttpResponse(salida)
 
 
 ############### TAREA 3 ################
