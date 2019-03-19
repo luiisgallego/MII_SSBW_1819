@@ -1,6 +1,13 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 
+####### Para tarea 4
+from pymongo import MongoClient
+client = MongoClient('mongo', 27017)
+db = client.movies
+pelis = db.pelis
+#######
+
 ############### TAREA 1 ################
 
 def hola_mundo(request):
@@ -73,3 +80,18 @@ def expresiones_regulares(request):
 	}
 
 	return render(request, 'nombres.html', context)
+
+############### TAREA 4 ################
+
+def consultas_pymongo(request):
+	lista = []
+	lista = pelis.find(limit=10)
+	print(pelis.count_documents({}))
+	print(lista)
+	context = {
+		'lista': lista
+	}
+	# Hacer template !!!!!!
+	return render(request, "salida.html", context)
+
+	

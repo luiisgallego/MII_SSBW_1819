@@ -9,4 +9,5 @@ urlpatterns = [
 	path('3/<entrada>', views.ejercicio3),
 	path('4/<entrada>', views.ejercicio4),
 	path('9', views.expresiones_regulares),
+	path('10', views.consultas_pymongo),
 ]
