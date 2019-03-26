@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+datos_db/journal/*
+datos_db/diagnostic.data
