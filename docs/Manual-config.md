@@ -27,6 +27,12 @@ docker-compose up
 
 Una vez que nuestra aplicación esta corriendo, ya podemos hacer uso de ella *localhost:8000*.
 
+## Nota
+
+Se ha eliminado del docker-compose mongo-express, ya que estaba causando problemas a la hora de iniciar los contenedores. Por tanto, las consultas con mongo se tendrán que realizar desde terminal (contendor). Para acceder al contenedor en concreto:
+
+- docker exec -it mii_ssbw_1819_mongo_1 bash
+    Luego dentro del contenedor ejecutaremos *mongo* para interactuar con la BD.
 
 ### Varios
 
