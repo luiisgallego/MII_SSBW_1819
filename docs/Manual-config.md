@@ -26,3 +26,8 @@ docker-compose up
 ~~~~
 
 Una vez que nuestra aplicación esta corriendo, ya podemos hacer uso de ella *localhost:8000*.
+
+
+### Varios
+
+- Eliminar todos los contenedores: docker rm $(docker ps -a -q) => primero hacer stop
