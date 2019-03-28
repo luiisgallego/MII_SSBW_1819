@@ -1,16 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from urllib.request import urlopen
-#import xml.etree.ElementTree as ET
-#import xmltodict
-import re
-
-####### Para tarea 4 #######
 from pymongo import MongoClient
-client = MongoClient('mongo', 27017)
-db = client.movies
-pelis = db.pelis
-#####################
+import re
 
 ############### TAREA 1 ################
 
@@ -81,21 +73,35 @@ def ejercicio5(request):
 def extract_names(request):
 
 	# Leemos la URL, transformamos y guardamos
-	url = "https://elpais.com/tag/rss/futbol/a/"
+	url = "http://ep00.epimg.net/rss/deportes/portada.xml"
 	file = urlopen(url)
 	data = file.read()
 	file.close()
 	data = data.decode('utf-8')
 
-	#tree = ET.parse(url)
-	#root = tree.getroot()
-
-	#data = xmltodict.parse(data)
-	#print(data)
-
+	# Expresiones regulares
 	titulos = re.findall(r'<title><\!\[CDATA\[(.+?)\]\]><\/title>', data)
-	#print(textoTitulos)
+	urlImagenes = re.findall(r'<enclosure url="(.+?)"', data)
 
+	# for valor1, valor2 in zip(titulos, urlImagenes):
+	# 	aux4.append({
+	# 		'titulo:': valor1,
+	# 		'imagen': valor2
+	# 	})
+
+	# for i in range(len(urlImagenes)):
+	# 	aux4.append({
+	# 		'titulo:': titulos[i],
+	# 		'imagen': urlImagenes[i]
+	# 	})
+
+	aux2 = []
+	for aux in titulos:
+		aux2.append({'titulo': aux})
+	
+	aux3 = []
+	for aux in urlImagenes:
+		aux3.append({'titulo': aux})
 
 	#####
 	context = {
@@ -104,33 +110,17 @@ def extract_names(request):
 			{'nombre': 'pepe', 'numero': 2},
 			{'nombre': 'miguel', 'numero': 3}
 		],
-		'titulos': titulos
+		'titulos': titulos,
+		'urlImagenes': aux3
 	}
 
 	return render(request, 'nombres.html', context)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ############### TAREA 4 ################
+
+client = MongoClient('mongo', 27017)
+db = client.movies
+pelis = db.pelis
 
 def consultas_pymongo(request):
 	lista = []

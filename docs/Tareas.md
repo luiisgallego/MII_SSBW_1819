@@ -1,5 +1,9 @@
 # INFO TAREAS
 
+## Tarea 1 
+
+Hola mundo al que además le añadimos la opción de que nos nuestre el nombre que le pasemos.
+
 ## Tarea 2
 
 Llegados a este punto ya tenemos creado todo el directorio de ficheros necesarios para realizar los ejercicios, por lo que para desarrollarlos haremos uso de los ficheros denominados *urls.py* y *views.py* que podemos encontrar dentro del directorio *ejercicios*.
@@ -14,27 +18,32 @@ Hemos creado una carpeta dentro de *ejercicios* denominada *templates* que usare
 
 - views.py => importante lo de render. Es lo que se encarga de generar el contenido.
 
-### TAREA 3
+## TAREA 3
 
 Usamos *REQUEST* para coger la URL de por ejemplo el pais - futbol y de esa url tomamos el código fuente de la página. Luego sobre ese código fuente completo hay que pasar expresiones regulares para localizar cosas como imágenes y su título. Posteriormente nos quedamos con ese par titulo - imagen y tendremos que mostrarlo en el template.
 
 El request hay que especificarlo en el requirements, por tanto, el contenedor hay que construirlo de nuevo (docker-compose build .....)
 
-### TAREA 4
+#### Nota
 
-Actualmente es necesario realizar dos veces *docker-compose up* para que funcione correctamente.
+Por ahora hemos sacado las expresiones regulares con la que obtener los títulos por un lado y las url de la imágenes por otro, pero estas expresiones hay que comprobarlas.
 
-### TAREA 5
+## TAREA 4
 
-- Hay que realizar esa consulta tanto para pymongo como mongoengine => una de estas consultas es tarea 4 y la otra tarea 5... creo.
-- Mongoengine en pelis, pymongo en ejercicios
+- La tarea 4, 5 y 6 están ligadas. 
+- En esta primera realizaremos las consultas con *pymongo*. Además haremos uso de bootstrap para darle una mejor apariencia.
+- Esta tarea estará localizada en ejercicios.
 
-- Entonces la idea es mediante pymongo hacer un ejercicio de consulta mediante formulario (o URL?), luego además, como aplicación definitiva(peli) lo haremos con mongoengine.
+Primero vamos a definir un html con un formulario, y este, realizará una consulta get/post con la que se redigirá a una nueva ruta (segundo html que definir), donde mostraremos el resultado de la consulta. El profesor recomendó hacer la consulta mediante GET ya que POST da un error....
+- Formulario con bootstrap.
+- Pagina con resultado de las consultas, CSS only.
+
+## TAREA 5
+
+- Esta tarea estará localizada en pelis.
+- Usamos *mongoengine*.
 - Usar expresiones regulares para la consulta del actor.
 
-#### RESUMEN
+## TAREA 6
 
-Hemos estado creando el docker-compose de mongo y mongoexpress, hemos importado la BD y utilizado PYMONGO para realizar consultas. Para poder realizar estas consultas y resolver el ejercicio es neceario crearse un formulario mediante un template donde el usuario introduce los parámetros de búsqueda. Tras esto, mediante pymongo se realiza la consulta. Esto se realiza en el proyecto de EJERCICIOS.
-
-Ahora, en el proyecto PELIS, tenemos que realizar los mismo pero con MONGOENGINE.
-
+Formulario con Bootstrap y lo demás con CSS.
