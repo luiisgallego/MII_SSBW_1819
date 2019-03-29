@@ -28,6 +28,16 @@ El request hay que especificarlo en el requirements, por tanto, el contenedor ha
 
 Por ahora hemos sacado las expresiones regulares con la que obtener los títulos por un lado y las url de la imágenes por otro, pero estas expresiones hay que comprobarlas.
 
+### Nota 2
+
+- Hay que usar la libreria request, no podemos usar cualquiera.
+- Hay que pasar el XML a TREE: arbolito = fromstring(request.content)
+- Y ahora podemos recorrer cada <item> el cual seria cada nodo del arbol, y de ahí recoger titulo - foto.
+- La idea es que en una pagina aparezcan titulos, y en otra imágenes. Aunque podemos mostrarlos conjuntamente reduciendo el número de estos a 10, por ejemplo.
+- Sacar titulares de aqui: http://ep00.epimg.net/rss/tags/ultimas_noticias.xml
+- Expresion regular: <title><!\[CDATA\[(.+?)\]\]><\/title>
+- Titular y foto:  https://elpais.com/tag/rss/albumes/a/
+
 ## TAREA 4
 
 - La tarea 4, 5 y 6 están ligadas. 
@@ -47,3 +57,5 @@ Primero vamos a definir un html con un formulario, y este, realizará una consul
 ## TAREA 6
 
 Formulario con Bootstrap y lo demás con CSS.
+
+

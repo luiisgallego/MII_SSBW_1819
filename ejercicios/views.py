@@ -118,19 +118,28 @@ def extract_names(request):
 
 ############### TAREA 4 ################
 
+# Conectamos con mongo
 client = MongoClient('mongo', 27017)
+# Seleccionamos BD
 db = client.movies
+# Seleccionamos collection
 pelis = db.pelis
 
-def consultas_pymongo(request):
-	lista = []
-	lista = pelis.find(limit=10)
-	print(pelis.count_documents({}))
-	print(lista)
+def consultas_pymongo(request, id):
+	#lista = []
+	#lista = pelis.find(limit=10)
+	#lista = pelis.find_one()
+	#aux = pelis.count_documents({})
+	#aux = db.collection('pelis').find({_id: '5b107bec1d2952d0da9046e6'})
+	#id = '5b107bec1d2952d0da9046e6'
+
+	titulo = 'An American Tail: Fievel Goes West'
+	aux = pelis.find_one({'title': id})
+
 	context = {
-		'lista': lista
+		'lista': aux
 	}
-	# Hacer template !!!!!!
-	return render(request, "salida.html", context)
+
+	return render(request, "salidas.html", context)
 
 	
