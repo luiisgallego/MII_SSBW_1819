@@ -2,3 +2,9 @@ Django>=2.0,<3.0
 mongoengine==0.16
 xmltodict==0.12.0
 requests==2.21.0
+django-mongoengine-forms==0.4.6
+django-allauth==0.39.1
+django-bootstrap-form
+djangorestframework
+django-rest-framework-mongoengine
+django-cors-headers

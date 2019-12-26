@@ -10,5 +10,6 @@ urlpatterns = [
 	path('4/<entrada>', views.ejercicio4),
 	path('5', views.ejercicio5),
 	path('tarea3', views.extract_names),
-	path('tarea4/<id>', views.consultas_pymongo),
+	path('tarea4/', views.main_pymongo),
+	path('tarea4/tarea4', views.consultas_pymongo),
 ]

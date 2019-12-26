@@ -1,0 +1,16 @@
+{% extends "ejercicios/main.html" %}
+
+{% block formulario %}
+<div class="principal">
+    <form action="tarea4" method="POST">
+        {% csrf_token %}
+        <label for="nombre">Pelicula</label>
+        <input type="text" id="pelicula" name="pelicula" placeholder="">
+        <label for="nombre">Año</label>
+        <input type="text" id="anio" name="anio" placeholder="">
+        <label for="nombre">Actor</label>
+        <input type="text" id="actor" name="actor" placeholder="">        
+        <button id="submit" type="submit">ENVIAR</button>
+    </form>
+</div>
+{% endblock %}

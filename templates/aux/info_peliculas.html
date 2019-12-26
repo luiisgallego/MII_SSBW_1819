@@ -1,0 +1,23 @@
+{% extends "main.html" %}
+{% block info_peliculas %}
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Titulo</th>
+                <th scope="col">Año</th>
+                <th scope="col">Actors</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for l in lista %}
+                <tr>
+                    <td>{{ l.title }}</td>
+                    <td>{{ l.year }}</td>
+                    <td>{{ l.actors }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

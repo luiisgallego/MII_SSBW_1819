@@ -1,0 +1,76 @@
+#h1Ejercicios {
+    margin-left: 40px;
+    color: #0656CE;
+}
+
+label {
+    display:block;
+    margin-top:20px;
+    letter-spacing:1px;
+    color: #2073F0;
+}
+ 
+.principal {
+    display:block;
+    margin:0 auto; 
+    width:510px;
+    color: #666666;
+    font-family:Arial;
+}
+ 
+form {
+    margin:0 auto;
+    width:400px;
+}
+ 
+input, textarea, #submit {
+    width:380px;
+    height:27px;
+    background:#666666;
+    border:2px solid #f6f6f6;
+    padding:10px;
+    margin-top:5px;
+    font-size:10px;
+    color:#ffffff;
+}
+ 
+textarea {
+    height:150px;
+}
+ 
+#submit {
+    width:85px;
+    height:35px;
+    border:none;
+    margin-top:20px;
+    cursor:pointer;
+}
+
+#submit {
+    background:#5A91E4;
+}
+
+
+#infoPeliculas {
+    display:block;
+    margin:0 auto; 
+    width: 1000px;
+    color: #666666;
+    font-family:Arial;
+    margin-top: 50px; 
+}
+
+#columna {
+    padding-top: 5px;
+    padding-bottom: 20px;
+    padding-right: 200px; 
+    font-size: 150%;
+}
+
+.columna2{
+    font-weight: bold;
+} 
+
+.columna3 {
+    padding-left: 450px;
+}

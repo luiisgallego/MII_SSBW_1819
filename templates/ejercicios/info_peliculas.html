@@ -1,0 +1,35 @@
+{% extends "ejercicios/main.html" %}
+
+{% block info_peliculas %}
+<div id="infoPeliculas">
+    <table>
+        <thead>
+            <tr>
+                <th id="columna" class="columna2" scope="col">Título</th>
+                <th id="columna" class="columna2" scope="col">Año</th>
+                <th id="columna" class="columna2" scope="col">Director</th>
+                <th id="columna" class="columna2" scope="col">Actores</th>
+            </tr>
+        </thead>
+        <tbody>                      
+            {% for l in lista %}
+            <tr style="height:20px;"></tr>  
+                <tr>
+                    <td >{{ l.title }}</td>
+                    <td>{{ l.year }}</td>
+                    <td>{{ l.director }}</td>
+                    <td colspan="2">
+                        {% for g in l.actors %}
+                            {{ g }} &nbsp &nbsp &nbsp
+                            {% if not forloop.last %}
+                                - &nbsp &nbsp &nbsp
+                            {% endif %}
+                        {% endfor %}
+                        
+                    </td>
+                </tr>
+            {% endfor %}            
+        </tbody>
+    </table>
+</div>
+{% endblock %}

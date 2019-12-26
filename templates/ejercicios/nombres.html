@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Ejercicio de expresiones regulares</title>
+    </head>
+    <body>
+        Titulares de deportes del País {{ año }}
+        <table>
+            <tr>
+                <th>Titular</th>
+            </tr>
+            {% for t in titulos %}
+                <tr>
+                    <td> {{ t }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

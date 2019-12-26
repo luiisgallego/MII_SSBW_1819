@@ -1,0 +1,132 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static "pelis/style.css" %}">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>MONGO ENGINE</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            
+        <script>
+            function toggleDarkLight() {
+                var body = document.getElementById("body");
+                var currentClass = body.className;
+                body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
+            }
+            function likePeli(id) {
+                alert(id)
+                var payload = JSON.stringify({
+                id : id
+                });
+                $.ajax({
+                    url: '/pelis/like',
+                    headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                    data : {id:id},
+                    method: "POST",
+                    dataType: "json",
+                    success : function(json) {
+		                alert("OK");
+		            },
+                    error: function(xhr, status){
+                        alert('ERROR');
+                    },
+                });
+            }
+        </script>
+    </head>
+        <body id="body" class="light-mode"> 
+            <div class="container" style="margin-top: 50px;">
+                <h1>Ejercicios MONGOENGINE con Bootstrap</h1>
+                <button type="button" name="dark_light" onclick="toggleDarkLight()" title="Toggle dark/light mode">🌛</button>
+            </div>
+            <div class="container" style="margin-top: 50px;">
+                {% block info_peliculas %}
+                <script type="text/javascript"
+                            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js">
+                        </script>
+                {% if all == "True" %}
+                    {% for p in pelis %}
+                        <table class="table table-bordered table-striped" style="margin-bottom: 50px;">
+                            <thead>
+                                <tr class="table-primary">
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">Año</th>
+                                    <th scope="col">Director</th>
+                                    <th scope="col">Like</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for p in pelis %}
+                                    <tr>
+                                        <td onclick="window.location.href='one/{{ p.id }}'">{{ p.title }}</td>
+                                        <td onclick="window.location.href='one/{{ p.id }}'">{{ p.year }}</td>
+                                        <td onclick="window.location.href='one/{{ p.id }}'">{{ p.director }}</td>
+                                        <td>
+                                            <button id="like" type="submit" class="btn btn-primary" onclick="likePeli('{{ p.id }}');">Like</button>
+                                            <button id="dislike" type="submit" class="btn btn-danger" onclick="dislikePeli('{{ p.id }}');">Dislike</button>                   
+                                        </td> 
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endfor %}
+                {% else %}
+                    <div style="margin-bottom: 50px;">
+                        <div class="row">
+                            <div class="offset-md-4" style="font-size: 30px;">{{ peli.title }}</div>
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-4">
+                                <img src="{{ peli.poster }}" alt="Imagen no disponible"></img>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">Director: {{ peli.director }}</div>
+                                        <div class="col">Año: {{ peli.year }}</div>
+                                        <div class="col">Likes: {{ peli.likes }}</div>
+                                    </div>
+                                    <div class="row">  
+                                        <div class="col">Género/s: 
+                                            {% for g in peli.genres %}
+                                                {{ g }} 
+                                                &nbsp
+                                                {% if not forloop.last %}
+                                                    - &nbsp
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="row">  
+                                        <div class="col">Actor/es: 
+                                            {% for a in peli.actors %}
+                                                {{ a }}
+                                                &nbsp
+                                                {% if not forloop.last %}
+                                                    - &nbsp
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="row"><div class="col">Argumento: {{ peli.plot }}</div></div>
+                                    <div class="row"><div class="col">Puntuación: {{ peli.imdb.rating }}</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+    
+                {% endblock %}
+            </div>
+
+<!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        </body>
+</html>
+

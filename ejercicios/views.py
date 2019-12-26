@@ -63,7 +63,6 @@ def ejercicio4(request, entrada):
 	return HttpResponse(salida)
 
 def ejercicio5(request):
-	# HACERRRRRR!!!!
     salida = '''<html>AUN POR REALIZAR....</html>'''
     return HttpResponse(salida)
 
@@ -80,41 +79,15 @@ def extract_names(request):
 	data = data.decode('utf-8')
 
 	# Expresiones regulares
-	titulos = re.findall(r'<title><\!\[CDATA\[(.+?)\]\]><\/title>', data)
+	titulos = re.findall("<item>\W*<title><!\[CDATA\[(.+?)\]\]><\/title>", data)
 	urlImagenes = re.findall(r'<enclosure url="(.+?)"', data)
 
-	# for valor1, valor2 in zip(titulos, urlImagenes):
-	# 	aux4.append({
-	# 		'titulo:': valor1,
-	# 		'imagen': valor2
-	# 	})
-
-	# for i in range(len(urlImagenes)):
-	# 	aux4.append({
-	# 		'titulo:': titulos[i],
-	# 		'imagen': urlImagenes[i]
-	# 	})
-
-	aux2 = []
-	for aux in titulos:
-		aux2.append({'titulo': aux})
-	
-	aux3 = []
-	for aux in urlImagenes:
-		aux3.append({'titulo': aux})
-
-	#####
 	context = {
 		'año': 2019,
-		'lista': [
-			{'nombre': 'pepe', 'numero': 2},
-			{'nombre': 'miguel', 'numero': 3}
-		],
-		'titulos': titulos,
-		'urlImagenes': aux3
+		'titulos': titulos
 	}
 
-	return render(request, 'nombres.html', context)
+	return render(request, 'ejercicios/nombres.html', context)
 
 ############### TAREA 4 ################
 
@@ -125,21 +98,57 @@ db = client.movies
 # Seleccionamos collection
 pelis = db.pelis
 
-def consultas_pymongo(request, id):
-	#lista = []
-	#lista = pelis.find(limit=10)
-	#lista = pelis.find_one()
-	#aux = pelis.count_documents({})
-	#aux = db.collection('pelis').find({_id: '5b107bec1d2952d0da9046e6'})
-	#id = '5b107bec1d2952d0da9046e6'
+# Inicialmente entramos en el formulario
+def main_pymongo(request): return render(request, 'ejercicios/formulario.html')
 
-	titulo = 'An American Tail: Fievel Goes West'
-	aux = pelis.find_one({'title': id})
+# Procesamos la info del formulario
+def consultas_pymongo(request):
+	lista = []
+	pelicula = request.POST.get('pelicula')
+	anio = request.POST.get('anio')
+	actor = request.POST.get('actor')
+
+	er_pelicula = re.compile("^" + pelicula)
+	er_anio = re.compile(anio)
+	er_actor = re.compile("^" + actor)
+
+	if pelicula != "" and anio != "" and actor != "":
+		lista = pelis.find({
+			'title': er_pelicula,
+			'year': int(anio),
+			'actors': er_actor
+		})
+	elif pelicula != "" and anio != "":
+		lista = pelis.find({
+			'title': er_pelicula,
+			'year': int(anio)
+		})
+	elif pelicula != "" and actor != "":
+		lista = pelis.find({
+			'title': er_pelicula,
+			'actors': er_actor
+		})
+	elif anio != "" and actor != "":
+		lista = pelis.find({
+			'year': int(anio),
+			'actors': er_actor
+		})
+	elif pelicula != "":
+		lista = pelis.find({
+			'title': er_pelicula
+		})
+	elif anio != "":
+		lista = pelis.find({
+			'year': int(anio),
+		})
+	elif actor != "":
+		lista = pelis.find({
+			'actors': er_actor
+		})
 
 	context = {
-		'lista': aux
+		'lista': lista
 	}
 
-	return render(request, "salidas.html", context)
+	return render(request, 'ejercicios/info_peliculas.html', context)
 
-	
